@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dhanesh90.github.io/Due_Date_Calc/sitemap.xml
