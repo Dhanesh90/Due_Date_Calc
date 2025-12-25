@@ -4,96 +4,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Due Date Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Baby Due Date</h1>
-            <p>Calculate your estimated delivery date with ease.</p>
+            <h1>Due Date Calculator</h1>
+            <p>Your cute companion for the pregnancy journey</p>
         </header>
-        
+
         <div class="calculator-card">
             <div class="input-group">
-                <label for="lmp">First Day of Last Period</label>
+                <label for="lmp">Last Period Date (LMP)</label>
                 <input type="date" id="lmp" required>
             </div>
-            
+
             <div class="input-group">
-                <label for="cycle">Cycle Length (Days)</label>
+                <label for="cycle">Cycle Length</label>
                 <div class="cycle-input-wrapper">
                     <button class="cycle-btn" id="cycle-minus">-</button>
-                    <input type="number" id="cycle" value="28" min="20" max="45">
+                    <input type="number" id="cycle" value="28">
                     <button class="cycle-btn" id="cycle-plus">+</button>
                 </div>
             </div>
 
-            <button id="calculate-btn">Calculate Due Date</button>
+            <button id="calculate-btn">Calculate My Due Date</button>
         </div>
 
-        <div id="result-container" class="hidden">
-            <div class="result-card">
-                <h2>Estimated Due Date</h2>
-                <div class="date-display" id="due-date-display">--</div>
-                <div class="details-grid">
-                    <div class="detail-item">
-                        <span class="label">Current Week</span>
-                        <span class="value" id="current-week">--</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="label">Trimester</span>
-                        <span class="value" id="trimester">--</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="label">Days Left</span>
-                        <span class="value" id="days-left">--</span>
-                    </div>
+        <div id="result-container" class="result-card hidden">
+            <h2>Estimated Due Date</h2>
+            <div id="due-date-display" class="date-display">--</div>
+            
+            <div class="details-grid">
+                <div class="detail-item">
+                    <span class="label">Current Week</span>
+                    <span id="current-week" class="value">--</span>
                 </div>
-            </div>
-
-            <!-- Timeline Section -->
-            <div id="timeline-container" class="timeline-container hidden">
-                <!-- Timeline items will be injected here -->
-            </div>
-        </div>
-
-        <!-- Detailed Week Modal -->
-        <div id="week-modal" class="modal-overlay hidden">
-            <div class="modal-content">
-                <button id="modal-close-btn" class="close-btn">&times;</button>
-                
-                <div class="modal-header-visual">
-                    <img id="modal-img" src="" alt="Baby Illustration">
-                    <div class="modal-week-badge">Week <span id="modal-week-num">--</span></div>
+                <div class="detail-item">
+                    <span class="label">Trimester</span>
+                    <span id="trimester" class="value">--</span>
                 </div>
-
-                <div class="modal-body">
-                    <div class="size-badge">
-                        <span id="modal-size-icon" class="size-icon"></span>
-                        <span class="size-text">Size of a <span id="modal-size-name">--</span></span>
-                    </div>
-
-                    <div class="modal-section">
-                        <h4>🌱 Development</h4>
-                        <p id="modal-dev-info">--</p>
-                    </div>
-
-                    <div class="modal-split">
-                        <div class="modal-box tips">
-                            <h4>💡 Medical Tips</h4>
-                            <ul id="modal-tips-list"></ul>
-                        </div>
-                        <div class="modal-box tests">
-                            <h4>🩺 Tests / Symptoms</h4>
-                            <ul id="modal-tests-list"></ul>
-                        </div>
-                    </div>
+                <div class="detail-item">
+                    <span class="label">Days Left</span>
+                    <span id="days-left" class="value">--</span>
                 </div>
             </div>
         </div>
 
+        <div id="timeline-container" class="timeline-container hidden">
+            <!-- Timeline Cards Generated Here -->
+        </div>
+
+        <footer>
+            <div id="visit-container">
+                <span class="visit-label">Visitors</span>
+                <span id="visit-count" class="visit-badge">...</span>
+            </div>
+            <p class="crypto-note">Protected by 100% Cuteness</p>
+        </footer>
     </div>
+
+    <!-- Modal Structure -->
+    <div id="week-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button id="modal-close-btn" class="close-btn">&times;</button>
+            
+            <div class="modal-header-visual">
+                <img id="modal-img" src="" alt="Fetus Visual">
+                <div><span id="modal-week-num" class="modal-week-badge">Week X</span></div>
+            </div>
+
+            <div class="size-badge">
+                <span id="modal-size-icon" class="size-icon">🍎</span>
+                <span class="size-text">Size of a <span id="modal-size-name">Apple</span></span>
+            </div>
+
+            <div class="modal-section">
+                <h4>🌱 Development</h4>
+                <p id="modal-dev-info">Standard development text...</p>
+            </div>
+
+            <div class="modal-split">
+                <div class="modal-box tips">
+                    <h4>💡 Medical Tips</h4>
+                    <ul id="modal-tips-list"></ul>
+                </div>
+                <div class="modal-box tests">
+                    <h4>🩺 Tests / Symptoms</h4>
+                    <ul id="modal-tests-list"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="data.js"></script>
     <script src="script.js"></script>
 </body>

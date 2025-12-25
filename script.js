@@ -227,4 +227,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 500);
         }
     }
+    // --- Visit Counter ---
+    function updateVisitCount() {
+        const visitBadge = document.getElementById('visit-count');
+        // Namespace: due-date-calc-dhanesh90, Key: visits (using a consistent namespace)
+        fetch('https://api.countapi.xyz/hit/due-date-calc-dhanesh90/visits')
+            .then(res => res.json())
+            .then(res => {
+                visitBadge.textContent = res.value;
+            })
+            .catch(err => {
+                console.error('Counter API Error:', err);
+                // Fallback or leave as ...
+            });
+    }
+
+    updateVisitCount();
 });
