@@ -2,20 +2,20 @@ const pregnancyWeeklyData = {
     // Weeks 1-4: Early Development
     1: {
         sizeComparison: "Not pregnant yet", sizeIcon: "🥚",
-        development: "Your body is preparing for ovulation. Technically, you're not pregnant yet!",
-        detailedInfo: "Week 1 is actually the start of your menstrual period. Your uterine lining is shedding, preparing for a new cycle. Your body is gearing up to release an egg (ovulation) in about two weeks.",
+        development: "Your body is preparing for ovulation/conception.",
+        detailedInfo: "Technically, you are not pregnant yet. This week is the start of your period. Your uterine lining is shedding to prepare for a new cycle, and your body is gearing up to release a mature egg.",
         tests: ["Start Prenatal Vitamins"],
         symptoms: ["Menstrual period", "Cramping"],
-        medicalTips: ["Start taking folic acid (400mcg) daily.", "Avoid alcohol and smoking."],
+        medicalTips: ["Start taking prenatal vitamins immediately.", "Avoid alcohol, smoking, and recreational drugs.", "adopt a balanced diet and exercise routine."],
         image: "assets/embryo.png"
     },
     2: {
         sizeComparison: "Microscopic Egg", sizeIcon: "🥚",
-        development: "Ovulation occurs. This is the prime time for conception.",
-        detailedInfo: "Near the end of this week, you ovulate. An egg is released from your ovary and travels down the fallopian tube, waiting to be fertilized by sperm.",
+        development: "Ovulation occurs. Prime time for conception.",
+        detailedInfo: "An egg is released from your ovary (ovulation) and travels down the fallopian tube. If it meets sperm, fertilization happens! The lining of your uterus thickens to receive a potential fertilized egg.",
         tests: ["Ovulation predictor kit (optional)"],
         symptoms: ["Increased cervical mucus", "Mild cramping"],
-        medicalTips: ["Track your cycle to identify your fertile window.", "Stay hydrated."],
+        medicalTips: ["Act as if you are already pregnant to protect the baby.", "Track your cycle to find your fertile window."],
         image: "assets/embryo.png"
     },
     3: {
@@ -40,11 +40,11 @@ const pregnancyWeeklyData = {
     // Weeks 5-13: First Trimester
     5: {
         sizeComparison: "Sesame Seed", sizeIcon: "🥓",
-        development: "The neural tube is forming. The heart begins to beat!",
-        detailedInfo: "The neural tube (brain/spinal cord) is developing. The heart tiny tube begins to beat at a rapid rhythm. The embryo looks like a tiny tadpole.",
+        development: "Heart begins to beat. Neural tube forming.",
+        detailedInfo: "The embryo looks like a tadpole. The neural tube (brain/spinal cord) is closing, and the tiny heart begins to beat. Structures for eyes and ears are starting to form.",
         tests: ["Schedule first prenatal appointment"],
         symptoms: ["Fatigue", "Breast tenderness", "Nausea (Morning Sickness)"],
-        medicalTips: ["Eat small, frequent meals to help with nausea.", "Rest as much as you need."],
+        medicalTips: ["Arrange your first prenatal visit.", "Narrow down your healthcare provider choice.", "Prepare for morning sickness."],
         image: "assets/embryo.png"
     },
     6: {
@@ -85,11 +85,11 @@ const pregnancyWeeklyData = {
     },
     10: {
         sizeComparison: "Kumquat", sizeIcon: "🍊",
-        development: "Vital organs are functioning. Fingers lose their webbing.",
-        detailedInfo: "The embryo is now officially a fetus! Kidneys, intestines, brain, and liver are functioning. Tooth buds are forming under the gums.",
+        development: "Vital organs functioning. Nails appearing.",
+        detailedInfo: "You are now in the fetal period! Kidneys, liver, brain, and lungs are functioning. Fingers lose their webbing, and nails/hair start to appear. The baby is actively swallowing and kicking.",
         tests: ["NIPT screening"],
-        symptoms: ["Round ligament pain (mild)", "Visible veins"],
-        medicalTips: ["Switch to maternity clothes if your waistband feels tight.", "Continue moderate exercise like walking."],
+        symptoms: ["Round ligament pain", "Visible veins"],
+        medicalTips: ["Plan for your second prenatal visit.", "Consider low-impact exercise like swimming.", "Ask your doctor about 'quickening'."],
         image: "assets/fetus_early.png"
     },
     11: {
@@ -177,11 +177,11 @@ const pregnancyWeeklyData = {
     },
     20: {
         sizeComparison: "Banana", sizeIcon: "🍌",
-        development: "Halfway there! Baby can swallow.",
-        detailedInfo: "Congratulations on the halfway mark! The baby swallows amniotic fluid, practicing for digestion. Hair, eyebrows, and lashes are growing.",
+        development: "Halfway there! Vernix protects skin.",
+        detailedInfo: "Halfway point! The baby is covered in 'vernix caseosa' (cheesy varnish) to protect skin from amniotic fluid. They are producing meconium (first bowel movement). Hair and lashes are growing.",
         tests: ["Anatomy Scan (Gender reveal possible)"],
         symptoms: ["Heartburn", "Swelling", "Snoring"],
-        medicalTips: ["Sleep with your head elevated for heartburn.", "Discuss your birth plan with your doctor."],
+        medicalTips: ["Start thinking about your birth plan.", "Consider a pregnancy journal.", "Increase iron intake (27-30mg) to prevent anemia."],
         image: "assets/fetus.png"
     },
     21: {
@@ -269,11 +269,11 @@ const pregnancyWeeklyData = {
     },
     30: {
         sizeComparison: "Cabbage", sizeIcon: "🥬",
-        development: "Memory is developing. Smooth skin.",
-        detailedInfo: "The baby is surrounded by a pint and a half of amniotic fluid. It can track light and regulate its own body temperature.",
+        development: "Eyes distinguish light. Space getting tight.",
+        detailedInfo: "The baby's eyes can now distinguish between light and dark and follow a source. The baby is growing larger, possibly extending under your rib cage. Mood swings may return for you.",
         tests: ["Kick counts"],
-        symptoms: ["Mood swings return", "Fatigue"],
-        medicalTips: ["Pack your hospital bag (basics).", "Rest often."],
+        symptoms: ["Mood swings return", "Fatigue", "Trouble sleeping"],
+        medicalTips: ["Research pain relief options for delivery.", "Look into cord blood banking.", "Monitor posture for backaches."],
         image: "assets/fetus_kicking.png"
     },
     31: {
@@ -359,11 +359,11 @@ const pregnancyWeeklyData = {
     },
     40: {
         sizeComparison: "Pumpkin", sizeIcon: "🎃",
-        development: "Happy Due Date! Growth continues.",
-        detailedInfo: "It's your due date! But only 5% of babies arrive exactly on time. The baby is plump and ready.",
+        development: "Happy Due Date! Skull is pliable.",
+        detailedInfo: "Happy Due Date! Bones have hardened, but the skull remains soft/pliable for birth. You may experience 'crowning' soon. Only 5% of babies arrive exactly on time.",
         tests: ["Non-stress test (if overdue)"],
-        symptoms: ["Labor signs!", "Impatience"],
-        medicalTips: ["Stay calm and patient.", "Walk to encourage labor."],
+        symptoms: ["Labor signs!", "Impatience", "Contractions"],
+        medicalTips: ["Learn techniques to fight the urge to push too early.", "Understand the APGAR test.", "Stay calm and patient."],
         image: "assets/baby.png"
     },
     41: {
