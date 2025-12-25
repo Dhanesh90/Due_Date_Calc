@@ -230,6 +230,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Visit Counter ---
     function updateVisitCount() {
         const visitBadge = document.getElementById('visit-count');
+        const visitContainer = document.getElementById('visit-container');
+
         // USing counterapi.dev which is free and simple
         fetch('https://api.counterapi.dev/v1/due-date-calc-dhanesh90/visits/up')
             .then(res => res.json())
@@ -237,8 +239,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 visitBadge.textContent = res.count;
             })
             .catch(err => {
-                console.error('Counter API Error:', err);
-                visitBadge.textContent = '...';
+                console.log('Counter blocked or failed. Hiding badge.');
+                visitContainer.style.display = 'none'; // Graceful degradation
             });
     }
 
