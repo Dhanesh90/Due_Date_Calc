@@ -229,6 +229,11 @@
         void resultContainer.offsetWidth;
         resultContainer.classList.add('visible');
 
+        // Auto-scroll to the result section
+        setTimeout(() => {
+            resultContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 300);
+
         // Store the target scroll element for the jump button
         // Don't auto-scroll anymore
         const jumpBtn = document.getElementById('jump-to-week-btn');
