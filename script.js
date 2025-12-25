@@ -230,15 +230,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Visit Counter ---
     function updateVisitCount() {
         const visitBadge = document.getElementById('visit-count');
-        // Namespace: due-date-calc-dhanesh90, Key: visits (using a consistent namespace)
-        fetch('https://api.countapi.xyz/hit/due-date-calc-dhanesh90/visits')
+        // USing counterapi.dev which is free and simple
+        fetch('https://api.counterapi.dev/v1/due-date-calc-dhanesh90/visits/up')
             .then(res => res.json())
             .then(res => {
-                visitBadge.textContent = res.value;
+                visitBadge.textContent = res.count;
             })
             .catch(err => {
                 console.error('Counter API Error:', err);
-                // Fallback or leave as ...
+                visitBadge.textContent = '...';
             });
     }
 
