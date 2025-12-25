@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Due Date Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Baby Due Date</h1>
+            <p>Calculate your estimated delivery date with ease.</p>
+        </header>
+        
+        <div class="calculator-card">
+            <div class="input-group">
+                <label for="lmp">First Day of Last Period</label>
+                <input type="date" id="lmp" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="cycle">Cycle Length (Days)</label>
+                <div class="cycle-input-wrapper">
+                    <button class="cycle-btn" id="cycle-minus">-</button>
+                    <input type="number" id="cycle" value="28" min="20" max="45">
+                    <button class="cycle-btn" id="cycle-plus">+</button>
+                </div>
+            </div>
+
+            <button id="calculate-btn">Calculate Due Date</button>
+        </div>
+
+        <div id="result-container" class="hidden">
+            <div class="result-card">
+                <h2>Estimated Due Date</h2>
+                <div class="date-display" id="due-date-display">--</div>
+                <div class="details-grid">
+                    <div class="detail-item">
+                        <span class="label">Current Week</span>
+                        <span class="value" id="current-week">--</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Trimester</span>
+                        <span class="value" id="trimester">--</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Days Left</span>
+                        <span class="value" id="days-left">--</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline Section -->
+            <div id="timeline-container" class="timeline-container hidden">
+                <!-- Timeline items will be injected here -->
+            </div>
+        </div>
+    </div>
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
