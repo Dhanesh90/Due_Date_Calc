@@ -57,6 +57,42 @@
                 <!-- Timeline items will be injected here -->
             </div>
         </div>
+
+        <!-- Detailed Week Modal -->
+        <div id="week-modal" class="modal-overlay hidden">
+            <div class="modal-content">
+                <button id="modal-close-btn" class="close-btn">&times;</button>
+                
+                <div class="modal-header-visual">
+                    <img id="modal-img" src="" alt="Baby Illustration">
+                    <div class="modal-week-badge">Week <span id="modal-week-num">--</span></div>
+                </div>
+
+                <div class="modal-body">
+                    <div class="size-badge">
+                        <span id="modal-size-icon" class="size-icon"></span>
+                        <span class="size-text">Size of a <span id="modal-size-name">--</span></span>
+                    </div>
+
+                    <div class="modal-section">
+                        <h4>🌱 Development</h4>
+                        <p id="modal-dev-info">--</p>
+                    </div>
+
+                    <div class="modal-split">
+                        <div class="modal-box tips">
+                            <h4>💡 Medical Tips</h4>
+                            <ul id="modal-tips-list"></ul>
+                        </div>
+                        <div class="modal-box tests">
+                            <h4>🩺 Tests / Symptoms</h4>
+                            <ul id="modal-tests-list"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
     <script src="data.js"></script>
     <script src="script.js"></script>
