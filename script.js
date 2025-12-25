@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+﻿document.addEventListener('DOMContentLoaded', () => {
     // DOM Elements
     const lmpInput = document.getElementById('lmp');
     const cycleInput = document.getElementById('cycle');
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Populate Modal
         modalWeekNum.textContent = week;
-        modalImg.src = data.visual || data.image; // Use specific visual if available, else standard image
+        modalImg.src = data.visual || data.image;
         modalSizeIcon.textContent = data.sizeIcon || '👶';
         modalSizeName.textContent = data.sizeComparison || 'Size of a Baby';
         modalDevInfo.textContent = data.detailedInfo || data.development;
@@ -58,7 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         modalTestsList.innerHTML = '';
-        // Combine tests and symptoms for the list
         const tests = data.tests && data.tests.length && data.tests[0] !== 'None' ? data.tests : [];
         const symptoms = data.symptoms || [];
 
@@ -81,12 +80,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Show Modal
         modal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        document.body.style.overflow = 'hidden';
     }
 
     function closeModal() {
         modal.classList.add('hidden');
-        document.body.style.overflow = ''; // Restore scrolling
+        document.body.style.overflow = '';
     }
 
     // Modal Event Listeners
@@ -96,7 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
             closeModal();
         }
     });
-    // Close on Escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
             closeModal();
@@ -107,63 +105,79 @@ document.addEventListener('DOMContentLoaded', () => {
     function calculateDueDate() {
         const lmpDate = new Date(lmpInput.value);
         if (isNaN(lmpDate.getTime())) {
-            // Simple validation feedback
             lmpInput.style.borderColor = '#FF6B6B';
-            setTimeout(() => lmpInput.style.borderColor = 'transparent', 2000);
+            setTimeout(() => lmpInput.style.borderColor = '#D0C4E0', 2000);
             return;
         }
+
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        const diffTime = today - lmpDate;
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+        // Validation: Not more than 40 weeks ago (280 days)
+        if (diffDays > 280) {
+            alert("The entered date is more than 40 weeks ago. Please enter a more recent Last Menstrual Period date.");
+            lmpInput.style.borderColor = '#FF6B6B';
+            resultContainer.classList.add('hidden');
+            document.getElementById('timeline-container').classList.add('hidden');
+            return;
+        }
+
+        // Validation: Not in the future
+        if (diffDays < 0) {
+            alert("The Last Menstrual Period date cannot be in the future.");
+            lmpInput.style.borderColor = '#FF6B6B';
+            resultContainer.classList.add('hidden');
+            document.getElementById('timeline-container').classList.add('hidden');
+            return;
+        }
+
+        lmpInput.style.borderColor = '#D0C4E0';
 
         const cycleLength = parseInt(cycleInput.value) || 28;
         const correction = cycleLength - 28;
 
-        // Naegele's Rule: LMP + 280 days + correction
         const dueDate = new Date(lmpDate);
         dueDate.setDate(dueDate.getDate() + 280 + correction);
 
-        // Current Progress
-        const today = new Date();
-        const diffTime = today - lmpDate;
-        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        // Reuse the 'today' variable declared earlier for current gestational age calculation
+        // The 'today' variable is already set to the start of the current day.
+        const diffTimeFromLMPToNow = new Date() - lmpDate; // Use new Date() for current time, not start of day
+        const diffDaysFromLMPToNow = Math.floor(diffTimeFromLMPToNow / (1000 * 60 * 60 * 24));
 
-        let gestationalDays = diffDays - correction; // Adjust age based on cycle
+        let gestationalDays = diffDaysFromLMPToNow - correction;
         if (gestationalDays < 0) gestationalDays = 0;
 
         const currentWeeks = Math.floor(gestationalDays / 7);
         const currentDaysRemainder = gestationalDays % 7;
 
-        // Trimester
         let trimester = 'First';
         if (currentWeeks >= 13 && currentWeeks < 27) trimester = 'Second';
         if (currentWeeks >= 27) trimester = 'Third';
 
-        // Days Left
-        const daysLeft = Math.ceil((dueDate - today) / (1000 * 60 * 60 * 24));
+        const daysLeft = Math.ceil((dueDate - new Date()) / (1000 * 60 * 60 * 24)); // Use new Date() for current time
 
-        // Format Date
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         const formattedDate = dueDate.toLocaleDateString('en-US', options);
 
-        // Update DOM - Basic Results
         dueDateDisplay.textContent = formattedDate;
         currentWeekDisplay.textContent = `${currentWeeks}w ${currentDaysRemainder}d`;
         trimesterDisplay.textContent = trimester;
         daysLeftDisplay.textContent = daysLeft > 0 ? daysLeft : '0';
 
-        // --- Update Timeline View ---
         const timelineContainer = document.getElementById('timeline-container');
-        timelineContainer.innerHTML = ''; // Clear previous
+        timelineContainer.innerHTML = '';
 
-        // Calculate current week index (1-based)
         let currentWeekIndex = currentWeeks + 1;
         if (currentWeekIndex < 1) currentWeekIndex = 1;
 
         let targetScrollElement = null;
 
-        // Generate Loop using data.js
-        for (let w = 1; w <= 42; w++) {
+        for (let w = 1; w <= 40; w++) {
             const data = pregnancyWeeklyData[w] || pregnancyWeeklyData[40];
 
-            // Determine Trimester
             let triLabel = '1st Trimester';
             if (w >= 14) triLabel = '2nd Trimester';
             if (w >= 28) triLabel = '3rd Trimester';
@@ -171,13 +185,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = document.createElement('div');
             card.className = 'week-card';
 
-            // Check if current
             if (w === currentWeekIndex) {
                 card.classList.add('current-week');
                 targetScrollElement = card;
             }
 
-            // Valid Tests & Symptoms for Preview
             const testTags = (data.tests || [])
                 .filter(t => t !== 'None')
                 .map(t => `<span class="tag test">🩺 ${t}</span>`)
@@ -206,33 +218,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="click-hint">Tap for details</div> 
             `;
 
-            // Add Click Event for Modal
             card.addEventListener('click', () => openModal(w));
 
             timelineContainer.appendChild(card);
         }
 
-        // Show Result
         resultContainer.classList.remove('hidden');
         timelineContainer.classList.remove('hidden');
 
-        // Force reflow
         void resultContainer.offsetWidth;
         resultContainer.classList.add('visible');
 
-        // Scroll to current week after short delay for transition
-        if (targetScrollElement) {
-            setTimeout(() => {
+        // Store the target scroll element for the jump button
+        // Don't auto-scroll anymore
+        const jumpBtn = document.getElementById('jump-to-week-btn');
+        if (targetScrollElement && jumpBtn) {
+            jumpBtn.onclick = () => {
                 targetScrollElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 500);
+            };
         }
     }
-    // --- Visit Counter ---
+
     function updateVisitCount() {
         const visitBadge = document.getElementById('visit-count');
         const visitContainer = document.getElementById('visit-container');
 
-        // USing counterapi.dev which is free and simple
         fetch('https://api.counterapi.dev/v1/due-date-calc-dhanesh90/visits/up')
             .then(res => res.json())
             .then(res => {
@@ -240,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .catch(err => {
                 console.log('Counter blocked or failed. Hiding badge.');
-                visitContainer.style.display = 'none'; // Graceful degradation
+                visitContainer.style.display = 'none';
             });
     }
 
