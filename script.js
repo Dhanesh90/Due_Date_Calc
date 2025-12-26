@@ -215,6 +215,7 @@
                         ${symptomTags}
                     </div>
                 </div>
+                <div class="click-hint">               </div>                
             `;
 
             card.addEventListener('click', () => openModal(w));
